@@ -6,18 +6,20 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        if not root:
+            return 0
         from collections import deque
         q=deque()
         q.append(root)
         a=[]
         while q:
-            x=q.popleft()
-            a.append(x.val)
-            if x.left:
-                q.append(x.left)
-            if x.right:
-                q.append(x.right)
+            b=q.popleft()
+            a.append(b.val)
+            if b.left:
+                q.append(b.left)
+            if b.right:
+                q.append(b.right)
         a=sorted(a)
         return a[k-1]
 
-        
+
