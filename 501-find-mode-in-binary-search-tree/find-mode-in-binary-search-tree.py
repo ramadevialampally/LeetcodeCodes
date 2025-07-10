@@ -6,6 +6,10 @@
 #         self.right = right
 class Solution:
     def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        if not root :
+            return []
+        if not root.left and not root.right:
+            return [root.val]
         a=[]
         from collections import deque
         q=deque()
@@ -23,10 +27,13 @@ class Solution:
                 d[i]=1
             else:
                 d[i]+=1
-        m=max([i for i in d.values()])
+        m=0
+        for k,v in d.items():
+            if v>m:
+                m=v
         res=[]
         for k,v in d.items():
             if v==m:
                 res.append(k)
         return res
-        
+          
